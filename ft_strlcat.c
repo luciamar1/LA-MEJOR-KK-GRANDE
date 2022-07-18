@@ -2,11 +2,11 @@
 
 size_t  ft_strlcat(char *dest, const char *src, size_t size)
 {
-    int i;
+//    int i;
     char *d;
 
     d = dest; 
-    i = 0;
+  //  i = 0;
     if (size <= ft_strlen(dest))
         return (ft_strlen(src) + size);    
     if (src == 0)

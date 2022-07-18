@@ -1,4 +1,4 @@
- #include "libft.h"
+     #include "libft.h"
 
 char *segmpon(const char *s, char c, char *m, int *x)
 {
@@ -7,19 +7,23 @@ char *segmpon(const char *s, char c, char *m, int *x)
 
     i = 0;
     n = 0;
-    while (s[i])
+    //printf("%d\n", *x);
+    //printf("%d", *x);
+    //printf("hola");
+    while (s[i] && s[i] != c)
+        i ++;
+    m = (char *)malloc((i + 1) * sizeof (char));
+    if (!m)
+        return(NULL);
+    m [i + 1 ]  = 0;
+    while (i --)
     {
-        printf("hola");
-        while(s[i] != c)
-            i ++;
-        m = (char *)malloc((i + 1) * sizeof (char));
-        if (!m)
-            return(NULL);
-        m [i + 1 ]  = 0;
-        while (i --)
-            m[n ++] = s[*x ++];
-        printf("%s", m);
-    }
+        if(s[*x] != c)
+            m[n ++] = s[*x];
+        *x += 1;
+        //printf("%d\n", *x);
+    } 
+    printf("%s\n", m);
     return(m);
 }
 
@@ -28,14 +32,14 @@ int pridimensioncount(char const *s, char c)
     int n;
 
     n = 1;
-    printf("incredibol");
+    //printf("incredibol");
     while(*s)
     {
-        printf("x   ");
+        //printf("x   ");
         if (*s == c)
         {
             while(*s && *s == c)
-                s++;printf("x   ");
+                s++;//printf("x   ");
             n ++;
         }
         s ++;
@@ -59,15 +63,15 @@ char    **ft_split(char const *s, char c)
     if (!m)
         return(NULL);
     m[n + 1] = 0;
-    printf("bueno..");
+    //printf("bueno..");
     while (n --)
         segmpon(s, c, m[i ++], &x);
-    printf("jo");
+    //printf("jo");
     return(m);
 }
 
-int main(void)
+/*int main(void)
 {
     ft_split("hola que tal", ' ');
     return(0);
-}
+}*/
