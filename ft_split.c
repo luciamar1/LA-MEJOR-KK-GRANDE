@@ -7,9 +7,6 @@ char *segmpon(const char *s, char c, char *m, int *x)
 
     i = 0;
     n = 0;
-    //printf("%d\n", *x);
-    //printf("%d", *x);
-    //printf("hola");
     while (s[i] && s[i] != c)
         i ++;
     m = (char *)malloc((i + 1) * sizeof (char));
@@ -70,8 +67,12 @@ char    **ft_split(char const *s, char c)
     return(m);
 }
 
-/*int main(void)
+int main(void)
 {
     ft_split("hola que tal", ' ');
     return(0);
-}*/
+}
+
+// "      split       this for   me  !       "
+// "                  olol"
+// "olol                     "
