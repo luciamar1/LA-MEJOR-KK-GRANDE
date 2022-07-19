@@ -1,4 +1,16 @@
-     #include "libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lucia-ma <lucia-ma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/19 02:06:19 by lucia-ma          #+#    #+#             */
+/*   Updated: 2022/07/19 02:36:59 by lucia-ma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
 
 char *mallocseg(char *m, const char *s, char c)
 {
@@ -25,7 +37,7 @@ char *pon(const char *s, char c, char *m, int *x)
         (*x)++;
     while (s[*x] && s[*x] != c)
         m[n ++] = s[(*x)++];
-    printf("\"%s\"\n", m);
+    //printf("%s\n", m);
     return(m);
 }
 
@@ -60,26 +72,40 @@ char    **ft_split(char const *s, char c)
     int n;
 
     if (!s || !c)
-        return(NULL);
+    {
+        m = malloc (8);
+        m[0] = NULL;
+        return (m);
+    }
     n = pridimensioncount(s, c);
-    i = 0;
+    i = n;
     x = 0;
     m = (char **)malloc((n + 1) * sizeof(char *));
     if (!m)
         return(NULL);
     m[n + 1] = NULL;
-    printf("\nn = %d", n);
     while (n --)
-        pon(s, c, mallocseg(m[i++], s, c), &x);
-    
-    return(m);
+    {
+        *m = pon(s, c, mallocseg(*m, s, c), &x);
+        m ++;
+    }
+    return(m - i);
 }
 
-int main(void)
-{
-    ft_split(" ", ' ');
-    return(0);
-}
+// int main(void)
+// {
+//     //ft_split("      split       this for   me  !       ", ' ');
+//     char    **result;
+
+//     result = ft_split("      split       this for   me  !       ", ' ');
+//     printf("%s\n", result[0]);
+//     printf("%s\n", result[1]);
+//     printf("%s\n", result[2]);
+//     printf("%s\n", result[3]);
+//     printf("%s\n", result[4]);
+
+//     return(0);
+// }
 
 // "     split       this for   me  !       "
 // "                  olol"
