@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 02:06:19 by lucia-ma          #+#    #+#             */
-/*   Updated: 2022/07/19 02:36:59 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2022/07/20 03:19:14 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ char *pon(const char *s, char c, char *m, int *x)
 
 int pridimensioncount(char const *s, char c)
 {
-    int n;
+    int l;
 
-    n = 0;
+    l = 0;
     if (*s != c)
         n ++;
     while(*s)
@@ -54,7 +54,7 @@ int pridimensioncount(char const *s, char c)
         {
             while(*s && *s == c)
                 s++;
-            if (*s )
+            if (*s && *s != c)
                 n ++;
         }
         s ++;
@@ -71,7 +71,7 @@ char    **ft_split(char const *s, char c)
     int x;
     int n;
 
-    if (!s || !c)
+    if (!s || !c )
     {
         m = malloc (8);
         m[0] = NULL;
@@ -92,20 +92,20 @@ char    **ft_split(char const *s, char c)
     return(m - i);
 }
 
-// int main(void)
-// {
-//     //ft_split("      split       this for   me  !       ", ' ');
-//     char    **result;
+int main(void)
+{
+    //ft_split("      split       this for   me  !       ", ' ');
+    char    **result;
 
-//     result = ft_split("      split       this for   me  !       ", ' ');
-//     printf("%s\n", result[0]);
-//     printf("%s\n", result[1]);
-//     printf("%s\n", result[2]);
-//     printf("%s\n", result[3]);
-//     printf("%s\n", result[4]);
+    result = ft_split("     ", ' ');
+    printf("%s\n", result[0]);
+    printf("%s\n", result[1]);
+    printf("%s\n", result[2]);
+    printf("%s\n", result[3]);
+    printf("%s\n", result[4]);
 
-//     return(0);
-// }
+    return(0);
+}
 
 // "     split       this for   me  !       "
 // "                  olol"
