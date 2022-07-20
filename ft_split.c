@@ -6,7 +6,7 @@
 /*   By: luciamar <luciamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 02:06:19 by lucia-ma          #+#    #+#             */
-/*   Updated: 2022/07/19 19:24:03 by luciamar         ###   ########.fr       */
+/*   Updated: 2022/07/20 17:34:09 by luciamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char *mallocseg(char *m, const char *s, char c)
     while(s[i] && s[i] != c)
         i++;
     m = (char *)malloc((i + 1) * sizeof(char));
-    m [i + 1 ]  = 0;
+    m [i]  = 0;
     if (!m)
         return(NULL);
     return(m);
@@ -28,13 +28,9 @@ char *mallocseg(char *m, const char *s, char c)
 
 char *pon(const char *s, char c, char *m, int *x)
 {
-    int i;
     int n;
-
-    i = 0;
+ 
     n = 0;
-    while(s[*x] && s[*x] == c)
-        (*x)++;
     while (s[*x] && s[*x] != c)
         m[n ++] = s[(*x)++];
     //printf("%s\n", m);
@@ -46,22 +42,26 @@ int pridimensioncount(char const *s, char c)
     int n;
 
     n = 0;
-    if (*s != c)
-        n ++;
-    while(*s)
+    while (*s)
     {
-        if (*s == c)
+        //printf("hola");
+        if(*s != c)
         {
-            while(*s && *s == c)
+            l ++;
+            printf("jijijij");
+            while (*s != c)
                 s++;
-            if (*s )
-                n ++;
         }
         s ++;
     }
-    if (n == 0)
-        n = 1;
-    return(n);
+    return(l);
+}
+
+char **mal(char **m)
+{
+    m = malloc (8);
+    m[0] = NULL;
+    return (m);
 }
 
 char    **ft_split(char const *s, char c)
@@ -72,18 +72,16 @@ char    **ft_split(char const *s, char c)
     int n;
 
     if (!s || !c)
-    {
-        m = malloc (8);
-        m[0] = NULL;
-        return (m);
-    }
+        return(mal(m));
     n = pridimensioncount(s, c);
+    if (n == 0)
+        return(mal(m));
     i = n;
     x = 0;
     m = (char **)malloc((n + 1) * sizeof(char *));
     if (!m)
         return(NULL);
-    m[n + 1] = NULL;
+    m[n] = NULL;
     while (n --)
     {
         *m = pon(s, c, mallocseg(*m, s, c), &x);
